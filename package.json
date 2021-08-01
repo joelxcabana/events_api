@@ -4,8 +4,8 @@
   "description": "api para eventos",
   "main": "index.js",
   "scripts": {
-    "dev" :"nodemon app.js",
-    "start" :"start app.js",
+    "dev": "nodemon app.js",
+    "start": "start app.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "Joel Cabana",
@@ -14,7 +14,10 @@
     "cors": "^2.8.5",
     "dotenv": "^10.0.0",
     "express": "^4.17.1",
-    "mongoose": "^5.13.5"
+    "moment": "^2.29.1",
+    "mongoose": "^5.13.5",
+    "mongoose-aggregate-paginate-v2": "^1.0.42",
+    "mongoose-paginate-v2": "^1.4.1"
   },
   "devDependencies": {
     "nodemon": "^2.0.12"
