@@ -1,28 +1,32 @@
 const mongoose = require('mongoose')
-const mongoosePaginate = require('mongoose-paginate-v2')
 const aggregatePaginate = require('mongoose-aggregate-paginate-v2');
 
 const { Schema } = mongoose
 
 const EventsSchema = new Schema({
     title:{
-        type: String
+        type: String,
+        require:true
     },
     description:{
-        type: String
+        type: String,
+        require:true
     },
     date_list:{
         type: [{
             date:{
-                type: Number
+                type: Number,
+                require:true
             },
             price:{
-                type: Number
+                type: Number,
+                require:true
             }
           }]
     },
     location:{
-        type:String
+        type:String,
+        require:true
     },
     featured:{
         type:Boolean
