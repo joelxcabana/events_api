@@ -9,7 +9,8 @@ const PORT = process.env.PORT || 3000
 app.use(cors())
 app.use(express.json())
 
-
+//cargar las rutas
+app.use('/api/v0/',require('./app/routes'));
 
 dbConnect()
 app.listen(PORT,()=>{
