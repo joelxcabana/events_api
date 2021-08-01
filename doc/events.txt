@@ -1,0 +1,3 @@
+- Estados de un evento
+   status : 1  -> Activo
+   status : 0  -> Eliminado

@@ -1,0 +1,4 @@
+- Estados de un usuario
+   status : -1 -> Eliminado
+   status : 1  -> Activo
+   status : 0  -> Pendiente ( a verificar por link enviado al correo)
