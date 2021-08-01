@@ -14,7 +14,7 @@ const getEventById = async (req,res) => {
 }
 
 const getEvents = async (req,res) => {
-    const { page = 1, limit =10 } = req.query
+    const { page = 1, limit = 10 } = req.query
 
     const options = {
         page,
@@ -26,8 +26,9 @@ const getEvents = async (req,res) => {
        //obtiene los eventos con fechas posteriores al dia de hoy y que esten activas (status:1)
        const aggregate = enventModel.aggregate([     
         {
-          $match: { "date_list.date": {$gt:today}, "status": 1 }
-        }
+          $match: {date_list : { $elemMatch: { date: {$gt:today}}} },
+        },
+        {$sort: {'date_list.date': 1}}
        ]);
 
        enventModel.aggregatePaginate(aggregate,options).then(function(results){
