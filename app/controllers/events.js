@@ -3,7 +3,7 @@ const getEvent = () => {
 
 }
 
-const getEvent = ()=>{
+const getEvents = ()=>{
 
 }
 
@@ -13,6 +13,6 @@ const addEvent = () =>{
 
 module.exports = {
     getEvent,
-    getEvent,
+    getEvents,
     addEvent
 }
