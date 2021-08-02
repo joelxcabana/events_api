@@ -1,3 +1,27 @@
-- Estados de un evento
-   status : 1  -> Activo
-   status : 0  -> Eliminado
+
+    title: titulo del evento de tipo string
+
+    description: descripciopn del evento de tipo string
+
+    user_id: id del usuario que crea el evento , esto se asigna por medio del payload de jwt
+
+    date_list: lista de las fechas del evento
+        [{
+            date: la fecha de creacion de de tipo unix y esta guardado en segundos
+            se recomiendoa esta pagina https://www.epochconverter.com/ para hacer la conversion
+
+            price:precio del evento de tipo int
+          }]
+
+    location: ubicacion del evento de tipo string
+
+    featured: true si es destacado ,si no lo es false
+
+    img_url:url de una imagen publica
+
+    created: fecha de creacion del evento de tipo unix y esta guardado en segundos
+            se recomiendoa esta pagina https://www.epochconverter.com/ para hacer la conversion
+
+    status: estado de un evento 
+             1  -> Activo
+             0  -> Eliminado

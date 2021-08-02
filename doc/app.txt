@@ -1,0 +1,56 @@
+Se pide desarrollar una web app que liste y permita crear eventos. El sistema final será una cartelera de eventos muy simple.
+
+*Listar eventos
+    -Como un visitante del sitio al ingresar al mismo debo ver un listado inicial de eventos ordenados por fecha.
+    -endpoint : GET http://localhost:3000/api/v0/events?page=1&limit=10
+    -paginacion es opcional ya toma valores por defecto limite = 10 y pagina 1
+
+*Ver detalle del evento
+    -Como un visitante del sitio haciendo click en un evento debo navegar al detalle del mismo que deberá listar, 
+     además del nombre el resto de sus atributos.
+    -endpoint : GET http://localhost:3000/api/v0/events/{id}
+
+*Listar eventos destacados
+    -Como un visitante del sitio en la página principal debo ver un listado de eventos destacados.
+    -endpoint : GET http://localhost:3000/api/v0/events/featured/
+
+*Login
+    -Como un visitante del sitio debo poder loguearme a una sección de backend.
+    -Para logearse primero debe crear un usuario 
+        -endpoint : POST http://localhost:3000/api/v0/users?
+        -parametros 
+                    {
+                        "name":"Joel",
+                        "surname":"Cabana",
+                        "email":"test@test.com",
+                        "password":"123456"
+                    }
+    -logearse como usuario
+        -endpoint : POST http://localhost:3000/api/v0/users/login
+        -parametros : 
+                    {
+                        "email":"test@test.com",
+                        "password":"123456"
+                    }
+    - Retorna un token para utilizar en algunas peticiones
+
+*Listado de eventos (backend)
+    -Como un usuario una vez logueado debo ver un listado de eventos paginados que creo el usuario logeado.
+    -endpoint : GET http://localhost:3000/api/v0/events/allByUser
+    -Headers : Authorization bearer XXXX
+
+*Crear evento
+    -Como un usuario logueado debo poder crear un evento con todos sus campos
+    -endpoint: POST http://localhost:3000/api/v0/events
+    -parametros :
+                    {
+                        "title":"jueves, 2 de septiembre de 2021",
+                        "description":"este miercoles rives se enfrenta a boca por una nueva edicion de la compa argentinate lo vas apedrder?",
+                        "location":"Corboda Capital, Cordoba, Argentina",
+                        "date_list": [{
+                                "date": 1630613300,
+                                "price": 1111111
+                        }],
+                        "featured":false,
+                        "img_url":"https://e00-marca.uecdn.es/assets/multimedia/imagenes/2018/11/29/15435011738515.jpg"
+                    }

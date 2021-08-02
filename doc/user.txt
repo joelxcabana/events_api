@@ -1,4 +1,16 @@
-- Estados de un usuario
-   status : -1 -> Eliminado
-   status : 1  -> Activo
-   status : 0  -> Pendiente ( a verificar por link enviado al correo)
+
+   name: nombre de tipo string
+
+   surname: apellido de tipo string
+
+   email: email de tipo string
+
+   password: password de tipo string se encrypta al crear el usuario
+
+   created: la fecha de creacion de de tipo unix y esta guardado en segundos
+            se recomiendoa esta pagina https://www.epochconverter.com/ para hacer la conversion
+
+   status : estado del usuario 
+            -1 -> Eliminado
+            1  -> Activo
+            0  -> Pendiente ( a verificar por link enviado al correo)

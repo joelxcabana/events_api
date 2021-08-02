@@ -9,6 +9,7 @@ const moment = require('moment')
  * @param {*} res 
  */
 const getEventById = async (req,res) => {
+    console.log("ENTO AL BY ID");
     try {
         const { id } = req.params
         const eventResult = await enventModel.findById(id);
@@ -108,9 +109,40 @@ const getEventsFeatured = async (req,res) =>{
    }
 }
 
+const getAllEventsByUser = async (req,res) =>{
+    console.log("ENTROOO AL GET ALL ")
+    const { page = 1, limit = 10 } = req.query
+
+    const options = {
+        page,
+        limit
+    }
+
+   try {
+       const today = moment().unix()
+       //obtiene los eventos con fechas posteriores al dia de hoy y que esten activas (status:1)
+       const aggregate = enventModel.aggregate([     
+        {
+          $match: {date_list : { $elemMatch: { date: {$gt:today}}},user_id:req.session_id},
+        },
+        {$sort: {'date_list.date': 1}}
+       ]);
+
+       enventModel.aggregatePaginate(aggregate,options).then(function(results){
+            res.send(results)
+        }).catch(function(err){
+            console.log(err);
+        })
+
+   } catch (e) {
+     httpError(res,e)
+   }
+}
+
 module.exports = {
     getEventById,
     getEvents,
     addEvent,
-    getEventsFeatured
+    getEventsFeatured,
+    getAllEventsByUser
 }
