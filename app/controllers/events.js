@@ -62,9 +62,9 @@ const addEvent = async (req,res) => {
         const {title, description, date_list ,location ,featured, img_url} = req.body
         const status = 1
         const created = moment().unix()
-
+        const user_id = req.session._id
         const resEvent = await enventModel.create({
-          title, description, date_list ,location ,featured, img_url, created, status
+          title, description, date_list ,location ,featured, img_url, created, status,user_id
         })
 
         res.send({ data : resEvent })

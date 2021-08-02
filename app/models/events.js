@@ -12,6 +12,9 @@ const EventsSchema = new Schema({
         type: String,
         require:true
     },
+    user_id:{
+      type: mongoose.Types.ObjectId
+    },
     date_list:{
         type: [{
             date:{

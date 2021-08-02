@@ -5,7 +5,6 @@ const bcrypt = require('bcrypt')
 const jwt = require('jsonwebtoken')
 
 const addUser = async  (req,res)=>{
-      console.log("addUser");
     try {
         let {name, surname,email,password} = req.body
 
@@ -26,9 +25,7 @@ const addUser = async  (req,res)=>{
 }
 
 const login = async (req,res)=>{
-
     const { email, password} = req.body
-
     const criteria = {
          email,
          status: 1
@@ -52,7 +49,7 @@ const login = async (req,res)=>{
                 email: user.email,
             }
             
-            jwt.sign(payload, "events-api-secretkey",{expiresIn:'32s'},(err,token)=>{
+            jwt.sign(payload, "events-api-secretkey",{expiresIn:'14400s'},(err,token)=>{
                 res.send({token})
             });
 
@@ -60,10 +57,6 @@ const login = async (req,res)=>{
             res.json({ status: 0, message: "not found"})
         }
     })
-
-    
-
-
 }
 
 module.exports  = {
