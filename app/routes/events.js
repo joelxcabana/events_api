@@ -1,6 +1,6 @@
 const express = require('express')
 const router = express.Router()
-const {ensureAuth} = require('../middlewares/authenticated')
+const auth = require('../middlewares/authenticated')
 
 const {getEventById , getEvents , addEvent , getEventsFeatured } = require('../controllers/events')
 
@@ -10,6 +10,6 @@ router.get('/featured/', getEventsFeatured)
 
 router.get('/:id', getEventById)
 
-router.post('/',ensureAuth, addEvent)
+router.post('/', auth.ensureAuth , addEvent)
 
 module.exports = router

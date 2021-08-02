@@ -51,9 +51,11 @@ const login = async (req,res)=>{
                 surname: user.surname,
                 email: user.email,
             }
-            const token = jwt.sign(payload, "events-api-secretkey");
+            
+            jwt.sign(payload, "events-api-secretkey",{expiresIn:'32s'},(err,token)=>{
+                res.send({token})
+            });
 
-            res.send({token})
         }else{
             res.json({ status: 0, message: "not found"})
         }
