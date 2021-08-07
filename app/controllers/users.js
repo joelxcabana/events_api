@@ -7,17 +7,22 @@ const jwt = require('jsonwebtoken')
 const addUser = async  (req,res)=>{
     try {
         let {name, surname,email,password} = req.body
+        const existUser = await userModel.findOne({email})
 
-        const status = 1
-        const created = moment().unix()
-        password = bcrypt.hashSync(password,bcrypt.genSaltSync(10))
-
-        const resUser = await userModel.create({
-            name, surname, email, password, status, created
-        })
-
-        res.status(200).send({ result : "user created successfully"  })
-        
+        if(!existUser){
+            const status = 1
+            const created = moment().unix()
+            password = bcrypt.hashSync(password,bcrypt.genSaltSync(10))
+    
+            const resUser = await userModel.create({
+                name, surname, email, password, status, created
+            })
+    
+            res.status(200).send({ result : "user created successfully"  })
+        }else{
+            res.status(400).send({ result : "the email already exists"})
+        }
+         
     } catch (e) {
         httpError(res,e)
     }

@@ -1,0 +1,299 @@
+{
+    "swagger": "2.0",
+    "info": {
+      "version": "1.0.0",
+      "title": "Events API",
+      "description": "API que liste y permita crear eventos. El sistema final será una cartelera de eventos muy simple.",
+      "license": {
+        "name": "MIT",
+        "url": "https://opensource.org/licenses/MIT"
+      },
+      "contact":{
+        "email": "joelxcabana@gmail.com",
+        "url":"https://www.linkedin.com/in/joelxcabana/"
+      }
+     
+    },
+
+    "securityDefinitions":{
+        "Bearer":{
+          "type": "apiKey",
+          "name": "Authorization",
+          "scheme": "bearer",
+          "in": "header",
+          "description":"Ingresa tu bearer token en formato **Bearer XXXXXXX**"
+        }
+    },
+
+  
+    "basePath": "/api/v0",
+    "tags": [
+      {
+        "name": "Users"
+      }
+    ],
+    "schemes": ["http"],
+    "consumes": ["application/json"],
+    "produces": ["application/json"],
+    
+
+    "paths": {
+
+      "/events": {
+        "post": {
+          "security": [
+            {
+              "Bearer": []
+            }
+          ],
+          "tags": ["Events"],
+          "description": "Crear un nuevo evento",
+          "summary": "Crea un nuevo evento",
+          "parameters": [
+            {
+              "name": "events",
+              "in": "body",
+              "description": "User that we want to create",
+              "schema": {
+                "$ref": "#/definitions/Event"
+              }
+            }
+          ],
+          "produces": ["application/json"],
+          "responses": {
+            "200": {
+              "description": "Success"
+            },
+            "400" :{
+              "description" : "Error validation"
+            },
+            "403" :{
+              "description" : "Forbidden"
+            }
+          }
+        }
+      },
+
+      "/events?page={page}&limit={limit}": {
+        "parameters": [
+          {
+            "name": "page",
+            "in": "query",
+            "description": "numero de pagina",
+            "type": "integer"
+          },
+          {
+            "name": "limit",
+            "in": "query",
+            "description": "limite de eventos por pagina",
+            "type": "integer"
+          }
+        ],
+        "get": {
+          "tags": ["Events"],
+          "summary": "Obtiene todos los eventos",
+          "responses": {
+            "200": {
+              "description": "Success"
+            }
+          }
+        }
+      },
+         
+      "/events/{id}": {
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "description": "Id del Evento",
+            "type": "string"
+          }
+        ],
+        "get": {
+          "tags": ["Events"],
+          "summary": "Obtiene un evento",
+          "responses": {
+            "200": {
+              "description": "Success"
+            },
+            "403": {
+              "description": "Forbidden"
+            }
+          }
+        }
+      },
+
+
+      "/events/featured?page={page}&limit={limit}": {
+        "parameters": [
+          {
+            "name": "page",
+            "in": "query",
+            "description": "numero de pagina",
+            "type": "integer"
+          },
+          {
+            "name": "limit",
+            "in": "query",
+            "description": "limite de eventos por pagina",
+            "type": "integer"
+          }
+        ],
+        "get": {
+          "tags": ["Events"],
+          "summary": "Obtiene todos los eventos destacados",
+          "//":"AGREGAR PARAMETROS DE PAGINADOOOOOOOOOOOOOOOOOOOOOOOOOOOOO",
+          "responses": {
+            "200": {
+              "description": "OK"
+            }
+          }
+        }
+      },
+
+      
+      "/events/allByUser/": {
+        "get": { 
+          "security": [
+            {
+              "Bearer": []
+            }
+          ],
+          "tags": ["Events"],
+          "summary": "Obtiene todos los eventos del usuario logeado",
+          "responses": {
+            "200": {
+              "description": "Success"
+            },
+            "403": {
+              "description": "Forbidden"
+            }
+          }
+        }
+      },
+
+    
+
+      "/users": {
+        "post": {
+          "tags": ["Users"],
+          "description": "Crear un nuevo usuario",
+          "summary": "Crear un nuevo usuario",
+          "parameters": [
+            {
+              "name": "user",
+              "in": "body",
+              "description": "User that we want to create",
+              "schema": {
+                "$ref": "#/definitions/User"
+              }
+            }
+          ],
+          "produces": ["application/json"],
+          "responses": {
+            "200": {
+              "description": "Success"
+            },
+            "400" :{
+              "description" : "Error Validation"
+            },
+            "403":{
+              "description" : "Forbidden"
+            }
+          }
+        }
+      },
+      "/users/login": {
+        "post": {
+          "tags": ["Users"],
+          "description": "Iniciar sesion como usuario",
+          "summary": "Iniciar sesion ",
+          "parameters": [
+            {
+              "name": "user",
+              "in": "body",
+              "description": "User that we want to create",
+              "schema": {
+                "$ref": "#/definitions/User Login"
+              }
+            }
+          ],
+          "produces": ["application/json"],
+          "responses": {
+            "200": {
+              "description": "Success"
+            },
+            "400" :{
+              "description" : "Error Validation"
+            }
+          }
+        }
+      }
+    },
+    "definitions": {
+      "User": {
+        "required": ["name", "surname", "email","password"],
+        "properties": {
+          "name": {
+            "type": "string"
+          },
+          "surname": {
+            "type": "string"
+          },
+          "email": {
+            "type": "string"
+          },
+          "password": {
+            "type": "string"
+          }
+        }
+      },
+      "User Login": {
+        "required": ["email","password"],
+        "properties": {
+          "email": {
+            "type": "string"
+          },
+          "password": {
+            "type": "string"
+          }
+        }
+      },
+
+      "Event": {
+        "required": ["title", "description", "location","featured","img_url","date_list"],
+        "properties": {
+          "title": {
+            "type": "string"
+          },
+          "description": {
+            "type": "string"
+          },
+          "location": {
+            "type": "string"
+          },
+          "featured": {
+            "type": "boolean"
+          },
+          "img_url": {
+            "type": "string"
+          },
+          "date_list": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "date": {
+                  "type": "integer"
+                },
+                "price": {
+                  "type": "integer"
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+}

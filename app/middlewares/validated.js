@@ -31,7 +31,7 @@ const user = async (req,res,next) => {
         await userSchema.validate(body)
         next()
     }catch(error){
-      return res.status(400).json({error})
+      return res.status(400).json({error:error.message})
     }
 }
 
