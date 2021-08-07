@@ -1,6 +1,8 @@
 # EVENTS API REST
 
 API que permita crear eventos y lsitar. El sistema final será una cartelera de eventos muy simple.
+## Api Documentacion
+1) Puedes probar y ver la documentacion del api en el siguiente link  [https://api-events-app.herokuapp.com/](https://api-events-app.herokuapp.com/).
 
 ## Instalación
 
