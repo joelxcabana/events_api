@@ -15,10 +15,16 @@ router.get(
      getEventsFeatured
 )
 //-------------------------------------------------------------------------
-/*router.get(
+router.get(
+    '/allByUser/',
+    auth.ensureAuth,
+    getAllEventsByUser
+)
+//-------------------------------------------------------------------------
+router.get(
     '/:id', 
     getEventById
-)*/
+)
 
 
 //>>>>>>>>>>>>>>>>>>>>>>>>>>>> Users Endpoints <<<<<<<<<<<<<<<<<<<<<<<<<<<
@@ -30,10 +36,6 @@ router.post(
     addEvent
 )
 
-router.get(
-    '/allByUser/',
-    auth.ensureAuth,
-    getAllEventsByUser
-)
+
 
 module.exports = router

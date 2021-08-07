@@ -9,7 +9,6 @@ const moment = require('moment')
  * @param {*} res 
  */
 const getEventById = async (req,res) => {
-    console.log("ENTO AL BY ID");
     try {
         const { id } = req.params
         const eventResult = await enventModel.findById(id);
@@ -110,7 +109,6 @@ const getEventsFeatured = async (req,res) =>{
 }
 
 const getAllEventsByUser = async (req,res) =>{
-    console.log("ENTROOO AL GET ALL ")
     const { page = 1, limit = 10 } = req.query
 
     const options = {
@@ -129,7 +127,7 @@ const getAllEventsByUser = async (req,res) =>{
        ]);
 
        enventModel.aggregatePaginate(aggregate,options).then(function(results){
-            res.send(results)
+            res.status(200).send(results)
         }).catch(function(err){
             console.log(err);
         })

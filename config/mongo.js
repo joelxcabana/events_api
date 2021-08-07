@@ -8,9 +8,9 @@ const dbConnect = () => {
      },
      (err,res) =>{
          if(!err){
-             console.log('---------->CONEXION CORRECTA')
+             console.log('\x1b[32m','----------> | Mongo db is connected | <----------')
          }else {
-             console.log('---------->CONEXION INCORRECTA')
+            console.log('\x1b[31m','----------> |Mongo db failed | <---------')
          }
      })
 }

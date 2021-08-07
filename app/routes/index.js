@@ -15,14 +15,12 @@ const removeExtension = (filenName) =>{
 
 //carga las rutas dinamicamente y el controlador necesario
 fs.readdirSync(pathRouter).filter((file =>{
-    console.log(pathRouter);
     const fileWithOutExt = removeExtension(file)
     //busca si hay algun archivo con el nombre index
     const skip = ['index'].includes(fileWithOutExt)
 
     if(!skip){
         router.use(`/${fileWithOutExt}`, require(`./${fileWithOutExt}`))
-        console.log('---->',fileWithOutExt)
     }
   
 }))

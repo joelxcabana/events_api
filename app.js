@@ -14,5 +14,7 @@ app.use('/api/v0/',require('./app/routes'));
 
 dbConnect()
 app.listen(PORT,()=>{
-    console.log('api stated in port',PORT)
+    console.log('\x1b[32m','***************************************************************************')
+    console.log('\x1b[32m','----------> | API STARTED | <----------')
+    console.log('\x1b[32m',`Port : ${PORT}`)
 })

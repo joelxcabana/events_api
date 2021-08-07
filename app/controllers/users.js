@@ -16,7 +16,7 @@ const addUser = async  (req,res)=>{
             name, surname, email, password, status, created
         })
 
-        res.send({ data : resUser })
+        res.status(200).send({ result : "user created successfully"  })
         
     } catch (e) {
         httpError(res,e)
@@ -50,7 +50,7 @@ const login = async (req,res)=>{
             }
             
             jwt.sign(payload, "events-api-secretkey",{expiresIn:'14400s'},(err,token)=>{
-                res.send({token})
+                res.status(200).send({token})
             });
 
         }else{
