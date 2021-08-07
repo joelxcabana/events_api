@@ -13,9 +13,7 @@ const ensureAuth = (req,res,next) =>{
             if(err){
                 res.sendStatus(403)
             }
-            
             req.session = payload
-            console.log(req.session)
         });
 
    

@@ -19,7 +19,8 @@
     "moment": "^2.29.1",
     "mongoose": "^5.13.5",
     "mongoose-aggregate-paginate-v2": "^1.0.42",
-    "mongoose-paginate-v2": "^1.4.1"
+    "mongoose-paginate-v2": "^1.4.1",
+    "yup": "^0.32.9"
   },
   "devDependencies": {
     "nodemon": "^2.0.12"
