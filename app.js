@@ -15,11 +15,6 @@ app.use(express.json())
 app.use('/api/v0/',require('./app/routes'));
 
 //configuracion para swagger
-const  os = require("os");
-const hostname = os.hostname();
-console.log(hostname)
-swaggerDocument.host = `${hostname}:${process.env.PORT}` 
-
 app.use('/',swaggerUi.serve,swaggerUi.setup(swaggerDocument));
 
 dbConnect()
