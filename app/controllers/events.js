@@ -1,6 +1,7 @@
 const enventModel = require('../models/events')
 const { httpError } = require('../helpers/heandleError')
 const moment = require('moment')
+const mongoose = require('mongoose')
 
 
 /**
@@ -12,6 +13,10 @@ const getEventById = async (req,res) => {
     try {
         const { id } = req.params
         const eventResult = await enventModel.findById(id);
+        
+         if(!eventResult){
+            res.json({ status: 0, message: "not found"})
+        }
         
         res.send(eventResult)
     } catch (e) {
@@ -118,10 +123,11 @@ const getAllEventsByUser = async (req,res) =>{
 
    try {
        const today = moment().unix()
+        const id = mongoose.Types.ObjectId(req.session._id)
        //obtiene los eventos con fechas posteriores al dia de hoy y que esten activas (status:1)
        const aggregate = enventModel.aggregate([     
         {
-          $match: {date_list : { $elemMatch: { date: {$gt:today}}},user_id:req.session_id},
+          $match: {date_list : { $elemMatch: { date: {$gt:today}}},user_id:id},
         },
         {$sort: {'date_list.date': 1}}
        ]);
