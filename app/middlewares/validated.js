@@ -12,7 +12,7 @@ const login = async (req,res,next) =>{
         await loginSchema.validate(body)
         next()
     }catch(error){
-             return res.status(400).json({error})
+            return res.status(400).json({error:error.message})
     }
 }
 
@@ -56,7 +56,7 @@ const event = async (req,res,next) =>{
         await eventSchema.validate(body)
         next()
     }catch(error){
-      return res.status(400).json({error})
+      return res.status(400).json({error:error.message})
     }
 }
 
